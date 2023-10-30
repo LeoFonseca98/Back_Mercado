@@ -1,4 +1,11 @@
 class Config:
-    DATABASE_URI = 'postgresql://postgres:123456@localhost/mercadinho_online'
+    DATABASE = {
+        'name': 'mercadinho_online',  
+        'engine': 'peewee.PostgresqlDatabase',
+        'user': 'postgres',
+        'password': '123456',
+        'host': 'localhost',
+    }
+
     
     
