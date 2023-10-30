@@ -11,12 +11,14 @@ app.config['JSON_SORT_KEYS'] = False
 def addUser():
     nome = request.form['nome']
     email = request.form['email']
+    telefone = request.form['telefone']
     cpf = request.form['cpf']
     senha = request.form['senha']
 
     user = Usuarios(
         nome = nome,
         email = email,
+        telefone = telefone,
         cpf = cpf,
         senha = senha
     )   
@@ -28,7 +30,6 @@ def addUser():
 @app.route('/add/address', methods=['POST'])
 def addAddress():
     rua = request.form['rua']
-    cidade = request.form['cidade']
     bairro = request.form['bairro']
     numero = request.form['numero']
     cep = request.form['cep']
@@ -37,7 +38,6 @@ def addAddress():
 
     endereco = Enderecos(
         rua = rua,
-        cidade = cidade,
         bairro = bairro,
         numero = numero,
         cep = cep,
