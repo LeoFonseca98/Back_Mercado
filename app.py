@@ -11,20 +11,20 @@ app.config['JSON_SORT_KEYS'] = False
 def addUser():
     nome = request.form['nome']
     email = request.form['email']
-    telefone = request.form['telefone']
     cpf = request.form['cpf']
+    telefone = request.form['telefone']
     senha = request.form['senha']
 
     user = Usuarios(
         nome = nome,
         email = email,
-        telefone = telefone,
         cpf = cpf,
+        telefone = telefone,
         senha = senha
     )   
     user.save()
 
-    return 'feito'
+    return {feito}
 
 
 @app.route('/add/address', methods=['POST'])
@@ -46,7 +46,7 @@ def addAddress():
     )   
     endereco.save()
 
-    return 'feito'
+    return {feito}
 
 
 @app.route('/add/products', methods=['POST'])
@@ -64,7 +64,7 @@ def addProducts():
     )   
     produto.save()
 
-    return 'feito'
+    return {feito}
 
 
 @app.route('/add/category', methods=['POST'])
@@ -75,6 +75,8 @@ def addCategory():
         decricao = descricao
     )   
     categoria.save()
+
+    return {feito}
 
 #################################################
 
