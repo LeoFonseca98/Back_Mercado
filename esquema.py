@@ -20,7 +20,6 @@ class Usuarios(BaseModel):
 
 class Enderecos(BaseModel):
     rua = TextField()
-    cidade = TextField()
     bairro = TextField()
     numero = IntegerField(unique=True)
     cep = TextField()
