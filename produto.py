@@ -1,7 +1,7 @@
 from peewee import Model, CharField, PostgresqlDatabase
 from config import Config
 
-db = PostgresqlDatabase(Config.DATABASE_URI()
+db = PostgresqlDatabase(Config.DATABASE_URI())
 
 class BaseModel(Model):
     class Meta:
