@@ -9,7 +9,7 @@ app.config['JSON_SORT_KEYS'] = False
 #pegar dados da url
 @app.route('/add/user', methods=['POST'])
 def addUser():
-    nome = request.form['name']
+    nome = request.form['nome']
     email = request.form['email']
     cpf = request.form['cpf']
     senha = request.form['senha']
