@@ -14,7 +14,7 @@ class Categoria(BaseModel):
 class Usuarios(BaseModel):
     nome = TextField()
     email = TextField(unique=True)
-  numero = IntegerField(unique=True)
+    telefone = IntegerField(unique=True)
     cpf = TextField(unique=True)
     senha = TextField()
 
