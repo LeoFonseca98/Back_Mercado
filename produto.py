@@ -1,11 +1,12 @@
-from flask_sqlalchemy import SQLAlchemy
+from peewee import Model, CharField, PostgresqlDatabase
+from config import Config
 
-db = SQLAlchemy()
+db = PostgresqlDatabase(Config.DATABASE_URI()
 
-class Produto(db.Model):
-    __tablename__ = 'produtos'
-
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(100), nullable=False)
-    descricao = db.Column(db.String(100), nullable=False)
+class BaseModel(Model):
+    class Meta:
+        database = db
+class Produto(BaseModel):
+    nome = CharField(max_length=100)
+    descricao = CharField(max_length=100)
     
