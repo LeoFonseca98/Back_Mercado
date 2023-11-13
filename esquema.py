@@ -15,29 +15,29 @@ class Categoria(BaseModel):
 
 
 class Usuarios(BaseModel):
-    nome = TextField()
-    email = TextField(unique=True)
-    cpf = TextField(unique=True)
-    telefone = IntegerField(unique=True)
+    nome = TextField(nullable=False)
+    email = TextField(unique=True, nullable=False)
+    cpf = TextField(unique=True, nullable=False)
+    telefone = IntegerField(unique=True, nullable=False)
     confirme = TextField()
-    senha = TextField()
+    senha = TextField(nullable=False)
 
 
 class Enderecos(BaseModel):
-    rua = TextField()
-    bairro = TextField()
-    numero = IntegerField(unique=True)
-    cep = TextField()
+    rua = TextField(nullable=False)
+    bairro = TextField(nullable=False)
+    numero = IntegerField(unique=True,nullable=False)
+    cep = TextFieldnullable=False()
     complemento = TextField()
     usuario = ForeignKeyField(Usuarios, backref='Enderecos')# nome do usuario
 
 
 
 class Produtos(BaseModel):
-    nome_produto = TextField()
-    valor = IntegerField()
+    nome_produto = TextField(nullable=False)
+    valor = IntegerFieldnullable=False()
     categoria = ForeignKeyField(Categoria, backref='Produtos') # nome da categoria
-    quantidade = IntegerField()
+    quantidade = IntegerField(nullable=False)
     url_imagem = TextField() # url da imagem do produto
 
 
