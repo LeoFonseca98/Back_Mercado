@@ -1,7 +1,10 @@
 from peewee import (PostgresqlDatabase, Model, TextField, 
                     IntegerField, ForeignKeyField, DateTimeField)
 
-db = PostgresqlDatabase('mercadinho_online',port=5432,user='postgres',password='123456')
+db = PostgresqlDatabase('nome do database',port=5432,user='postgres',password='123456')
+
+# Coloque o nome do database, port , user e password
+# o database já precisa esta criado
 
 class BaseModel(Model):
     class Meta():
@@ -16,6 +19,7 @@ class Usuarios(BaseModel):
     email = TextField(unique=True)
     cpf = TextField(unique=True)
     telefone = IntegerField(unique=True)
+    confirme = TextField()
     senha = TextField()
 
 
@@ -25,15 +29,17 @@ class Enderecos(BaseModel):
     numero = IntegerField(unique=True)
     cep = TextField()
     complemento = TextField()
-    usuario = ForeignKeyField(Usuarios, backref='Enderecos')
+    usuario = ForeignKeyField(Usuarios, backref='Enderecos')# nome do usuario
 
 
 
 class Produtos(BaseModel):
     nome_produto = TextField()
     valor = IntegerField()
-    categoria = ForeignKeyField(Categoria, backref='Produtos')
+    categoria = ForeignKeyField(Categoria, backref='Produtos') # nome da categoria
     quantidade = IntegerField()
+    url_imagem = TextField() # url da imagem do produto
+
 
 
 #class Historico_Precos(BaseModel):
