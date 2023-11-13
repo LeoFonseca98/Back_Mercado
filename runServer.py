@@ -5,8 +5,12 @@ app = Flask(__name__)
 
 app.config['JSON_SORT_KEYS'] = False
 
+#eu não coloquei o CORS
+#Rotas POST
+#Rotas GET
 
-#pegar dados da url
+
+# Rotas POST
 @app.route('/add/user', methods=['POST'])
 def addUser():
     try:
@@ -15,6 +19,7 @@ def addUser():
         email = data['email']
         cpf = data['cpf']
         telefone = data['telefone']
+        confirme = data['confirme']
         senha = data['senha']
         print(nome,email,cpf,telefone,senha)
 
@@ -23,6 +28,7 @@ def addUser():
             email = email,
             cpf = cpf,
             telefone = telefone,
+            confirme = confirme,
             senha = senha
         )   
         user.save()
@@ -49,7 +55,7 @@ def addAddress():
         numero = data['numero']
         cep = data['cep']
         complemento = data['complemento']
-        usuario = data['usuario_id']
+        usuario = data['usuario_nome'] # nome do usuario
 
         endereco = Enderecos(
             rua = rua,
@@ -57,7 +63,7 @@ def addAddress():
             numero = numero,
             cep = cep,
             complemento = complemento,
-            usuario = Usuarios.select().where(Usuarios.nome == usuario).get()
+            usuario = Usuarios.select().where(Usuarios.nome == usuario).get() # nome do usuario
         )   
         endereco.save()
 
@@ -79,14 +85,16 @@ def addProducts():
         data = request.get_json()
         nome_produto = data['nome_produto']
         valor = data['valor']
-        categoria_id = data['categoria']
+        categoria_id = data['categoria'] # nome da categoria
         quantidade = data['quantidade']
+        url = data['url_imagem']
 
         produto = Produtos(
             nome_produto = nome_produto,
             valor = valor,
-            categoria = Categoria.select().where(Categoria.nome == categoria_id).get(),
-            quantidade = quantidade
+            categoria = Categoria.select().where(Categoria.nome == categoria_id).get(), # nome da categoria
+            quantidade = quantidade,
+            url_imagem = url
         )   
         produto.save()
 
@@ -126,6 +134,29 @@ def addCategory():
         return jsonify(error_message), 400
 
 #################################################
+
+# Rotas GET
+@app.route('/login', methods=['GET'])
+def login():
+    try:
+        data = request.get_json()
+        username = data['email'] # ele vai buscar pelo email
+        password = data['password']
+
+        query = Usuarios.select().where(Usuarios.email == username , Usuarios.senha == password)
+
+        response = {
+            "message": "Login bem-sucedido",
+            "user_id": query.get().id,
+            "username": query.get().nome,
+        }
+        
+
+        return jsonify(response), 200
+
+    except Exception as e:
+        error_message = {"error": str(e)}
+        return jsonify(error_message), 401
 
 
 @app.route('/')
