@@ -24,18 +24,18 @@ class Usuarios(BaseModel):
 
 
 class Enderecos(BaseModel):
-    rua = TextField(nullable=False)
-    bairro = TextField(nullable=False)
+    rua = TextField(unique=True, nullable=False)
+    bairro = TextField(unique=True, nullable=False)
     numero = IntegerField(unique=True,nullable=False)
-    cep = TextFieldnullable=False()
+    cep = TextField(nullable=False,unique=True)
     complemento = TextField()
     usuario = ForeignKeyField(Usuarios, backref='Enderecos')# nome do usuario
 
 
 
 class Produtos(BaseModel):
-    nome_produto = TextField(nullable=False)
-    valor = IntegerFieldnullable=False()
+    nome_produto = TextField(nullable=False,unique=True)
+    valor = IntegerFieldnullable=False(nullable=False)
     categoria = ForeignKeyField(Categoria, backref='Produtos') # nome da categoria
     quantidade = IntegerField(nullable=False)
     url_imagem = TextField() # url da imagem do produto
