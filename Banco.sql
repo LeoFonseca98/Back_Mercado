@@ -9,8 +9,8 @@ CREATE TABLE usuarios (
     telefone VARCHAR(25) NOT NULL,
     confirme VARCHAR(255) NOT NULL,
     senha VARCHAR(255) NOT NULL,
-    criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modificadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- controle --
+    modificadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- controle --
 );
 
 -- Tabela de Endereços dos Usuários
