@@ -45,17 +45,17 @@ CREATE TABLE produtos (
 );
 
 -- Tabela de Vendas
-CREATE TABLE vendas (
+CREATE TABLE Compra (
     id SERIAL PRIMARY KEY,
     usuario_id INTEGER REFERENCES usuarios(id) ON DELETE SET NULL,
     dataVenda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modificadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- controle --
 );
 
--- Tabela de Itens da Venda
-CREATE TABLE itensVenda (
+-- Tabela de Itens da Compra
+CREATE TABLE itensCompra (
     id SERIAL PRIMARY KEY,
-    venda_id INTEGER REFERENCES vendas(id) ON DELETE CASCADE,
+    venda_id INTEGER REFERENCES compra(id) ON DELETE CASCADE,
     produto_id INTEGER REFERENCES produtos(id) ON DELETE SET NULL,
     quantidade INTEGER NOT NULL,
     valorUnitario DECIMAL(10, 2) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE itensVenda (
 );
 
 -- Tabela de Carrinho de Compras
-CREATE TABLE carrinhoCompras (
+CREATE TABLE carrinho (
     id SERIAL PRIMARY KEY,
     usuario_id INTEGER REFERENCES usuarios(id) ON DELETE SET NULL,
     criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- controle --
@@ -74,7 +74,7 @@ CREATE TABLE carrinhoCompras (
 -- Tabela de Itens do Carrinho
 CREATE TABLE itensCarrinho (
     id SERIAL PRIMARY KEY,
-    carrinho_id INTEGER REFERENCES carrinhoCompras(id) ON DELETE CASCADE,
+    carrinho_id INTEGER REFERENCES carrinho(id) ON DELETE CASCADE,
     produto_id INTEGER REFERENCES produtos(id) ON DELETE SET NULL,
     quantidade INTEGER NOT NULL,
     valor DECIMAL(10, 2) NOT NULL,
