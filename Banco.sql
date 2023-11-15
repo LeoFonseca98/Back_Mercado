@@ -8,7 +8,7 @@ CREATE TABLE usuarios (
     cpf VARCHAR(100) UNIQUE NOT NULL,
     telefone VARCHAR(25) NOT NULL,
     confirme VARCHAR(255) NOT NULL,
-    senha VARCHAR(255) NOT NULL),
+    senha VARCHAR(255) NOT NULL,
     criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modificadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -74,7 +74,7 @@ CREATE TABLE carrinhoCompras (
 -- Tabela de Itens do Carrinho
 CREATE TABLE itensCarrinho (
     id SERIAL PRIMARY KEY,
-    carrinho_id INTEGER REFERENCES carrinho_compras(id) ON DELETE CASCADE,
+    carrinho_id INTEGER REFERENCES carrinhoCompras(id) ON DELETE CASCADE,
     produto_id INTEGER REFERENCES produtos(id) ON DELETE SET NULL,
     quantidade INTEGER NOT NULL,
     valor DECIMAL(10, 2) NOT NULL,
